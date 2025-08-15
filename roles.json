@@ -1,0 +1,25 @@
+{
+  "roles": [
+    {
+      "roleId": "ADMIN",
+      "name": "Admin",
+      "description": "Full access to all features.",
+      "permissions": ["event:create", "event:read", "event:update", "event:delete"],
+      "angularDescription": "Admin users have access to all Angular app features, including event management and user administration."
+    },
+    {
+      "roleId": "CUSTOMER",
+      "name": "Customer - authenticated user",
+      "description": "Can browse products and manage own orders.",
+      "permissions": ["event:read"],
+      "angularDescription": "Authenticated customers can browse events and manage their own bookings within the Angular app."
+    },
+    {
+      "roleId": "GUEST",
+      "name": "Guest - unauthenticated user",
+      "description": "Can browse products and manage own orders.",
+      "permissions": ["event:read"],
+      "angularDescription": "Guests can view events and initiate bookings but have limited access in the Angular app."
+    }
+  ]
+}

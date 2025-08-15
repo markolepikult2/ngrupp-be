@@ -1,0 +1,34 @@
+{
+  "dataModels": [
+    {
+      "modelName": "Event",
+      "fields": [
+        {"name": "id", "type": "Long", "primaryKey": true},
+        {"name": "name", "type": "String"},
+        {"name": "startTime", "type": "dateTime"},
+        {"name": "seats", "type": "Number"}
+      ],
+      "angularDescription": "Represents an event entity in the Angular app. Used for displaying, creating, and managing events in components such as EventListComponent and EventDetailComponent."
+    },
+    {
+      "modelName": "Customer",
+      "fields": [
+        {"name": "id", "type": "Long", "primaryKey": true},
+        {"name": "firstName", "type": "String"},
+        {"name": "lastName", "type": "String"},
+        {"name": "email", "type": "String"}
+      ],
+      "angularDescription": "Represents a customer profile in the Angular app. Used for user registration, authentication, and displaying customer information in components like CustomerProfileComponent."
+    },
+    {
+      "modelName": "Booking",
+      "fields": [
+        {"name": "id", "type": "Long", "primaryKey": true},
+        {"name": "eventId", "type": "UUID"},
+        {"name": "customerId", "type": "UUID"},
+        {"name": "bookingTime", "type": "dateTime"}
+      ],
+      "angularDescription": "Represents a booking record in the Angular app. Used for managing event reservations, linking customers to events, and displaying booking history in BookingListComponent."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="1" author="ngrupp">
+        <createTable tableName="event">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="start_time" type="TIMESTAMP"/>
+            <column name="seats" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1.1" author="ngrupp">
+        <insert tableName="event">
+            <column name="name" value="Spring Boot Workshop"/>
+            <column name="start_time" valueDate="2025-09-01T10:00:00"/>
+            <column name="seats" valueNumeric="50"/>
+        </insert>
+        <insert tableName="event">
+            <column name="name" value="Angular Training"/>
+            <column name="start_time" valueDate="2025-09-10T14:00:00"/>
+            <column name="seats" valueNumeric="30"/>
+        </insert>
+        <insert tableName="event">
+            <column name="name" value="DevOps Meetup"/>
+            <column name="start_time" valueDate="2025-09-15T18:00:00"/>
+            <column name="seats" valueNumeric="100"/>
+        </insert>
+        <insert tableName="event">
+            <column name="name" value="Cloud Conference"/>
+            <column name="start_time" valueDate="2025-10-01T09:00:00"/>
+            <column name="seats" valueNumeric="200"/>
+        </insert>
+        <insert tableName="event">
+            <column name="name" value="AI Hackathon"/>
+            <column name="start_time" valueDate="2025-10-15T08:00:00"/>
+            <column name="seats" valueNumeric="80"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
