@@ -1,5 +1,4 @@
 package org.example.ngruppbe.config;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,8 +7,6 @@ import org.springframework.security.config.annotation.web.configurers.HeadersCon
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 @Configuration
 @EnableWebSecurity
@@ -23,7 +20,7 @@ public class ResourceServerConfig {
                 .anyRequest().permitAll()
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}))
-            .csrf(csrf -> csrf .ignoringRequestMatchers(toH2Console())) // H2 Console CSRF protection disabled
+            .csrf(csrf -> csrf.ignoringRequestMatchers("/api/events/**" , "/h2-console/**")) // CSRF protection disabled for /api/events and H2 Console
             .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 ; // H2 Console frame options disabled
         return http.build();
