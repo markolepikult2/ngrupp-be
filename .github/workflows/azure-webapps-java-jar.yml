@@ -47,7 +47,12 @@ jobs:
           cache: 'maven'
 
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn clean package
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}  # Ensure you have set this secret with your Azure credentials
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
