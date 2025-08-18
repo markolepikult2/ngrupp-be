@@ -16,6 +16,62 @@
         "description": "A view that displays events in a grid layout."
       },
       "angularDescription": "Implements the event listing feature in Angular using EventListComponent. Integrates with the backend API to fetch and display events for all user roles."
+    },
+    {
+      "useCaseId": "UC-ADD-EVENT",
+      "name": "Add Event",
+      "description": "A user with appropriate permissions can add a new event to the system via the POST /api/events endpoint.",
+      "actors": ["ADMIN"],
+      "permissionsRequired": ["event:create"],
+      "apiEndpoint": {
+        "method": "POST",
+        "path": "/api/events",
+        "requestModel": "Event",
+        "responseModel": "Event"
+      },
+      "uiComponent": {
+        "componentName": "EventFormComponent",
+        "description": "A form view that allows users to input event details and submit them to create a new event."
+      },
+      "angularDescription": "Implements the event creation feature in Angular using AddEventComponent. Integrates with the backend API to submit new event data and display success or error messages."
+    },
+    {
+      "useCaseId": "UC-LIST-BOOKINGS-OF-EVENT",
+      "name": "List Bookings of Event",
+      "description": "A user can view a list of all bookings for a specific event.",
+      "actors": ["ADMIN", "CUSTOMER","GUEST"],
+      "permissionsRequired": ["booking:read"],
+      "apiEndpoint": {
+        "method": "GET",
+        "path": "/api/booking/{eventId}",
+        "responseModel": "Booking[]",
+        "pathParameters": {
+          "eventId": "The ID of the event for which bookings are to be listed."
+        }
+      },
+      "uiComponent": {
+        "componentName": "BookingListComponent",
+        "description": "A view that displays bookings for a specific event in a list format."
+      },
+      "angularDescription": "Implements the booking listing feature in Angular using BookingListComponent. Integrates with the backend API to fetch and display bookings for a specific event."
+    },
+    {
+      "useCaseId": "UC-ADD-BOOKING-TO-EVENT",
+      "name": "Add Booking to Event",
+      "description": "A user can register a visitor for a specific event by adding a booking.",
+      "actors": ["ADMIN", "CUSTOMER","GUEST"],
+      "permissionsRequired": ["booking:create"],
+      "apiEndpoint": {
+        "method": "POST",
+        "path": "/api/booking",
+        "requestModel": "Booking",
+        "responseModel": "Booking"
+      },
+      "uiComponent": {
+        "componentName": "BookingFormComponent",
+        "description": "A form view that allows users to input booking details and submit them to register a visitor for an event."
+      },
+      "angularDescription": "Implements the booking creation feature in Angular using EventAddComponent. Integrates with the backend API to submit new booking data and display success or error messages."
     }
-  ]
+    ]
 }
