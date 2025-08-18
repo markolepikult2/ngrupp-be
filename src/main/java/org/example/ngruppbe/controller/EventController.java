@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.validation.FieldError;
+import org.springframework.http.HttpStatus;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/events")
@@ -24,7 +30,16 @@ public class EventController {
     }
 
     @PostMapping
-    public Event createEvent(@RequestBody Event event) {
+    public Event createEvent(@Valid @RequestBody Event event) {
         return eventService.saveEvent(event);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        StringBuilder errors = new StringBuilder();
+        for (FieldError error : ex.getBindingResult().getFieldErrors()) {
+            errors.append(error.getField()).append(": ").append(error.getDefaultMessage()).append("; ");
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.toString());
     }
 }
