@@ -13,4 +13,16 @@
             <column name="email" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
+    <changeSet id="2.1" author="ngrupp">
+        <insert tableName="customer">
+            <column name="first_name" value="Alice"/>
+            <column name="last_name" value="Anderson"/>
+            <column name="email" value="alice.anderson@example.com"/>
+        </insert>
+        <insert tableName="customer">
+            <column name="first_name" value="Bob"/>
+            <column name="last_name" value="Brown"/>
+            <column name="email" value="bob.brown@example.com"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>

@@ -23,4 +23,16 @@
                                 referencedTableName="customer" referencedColumnNames="id"
                                 constraintName="fk_booking_customer"/>
     </changeSet>
+    <changeSet id="3.1" author="ngrupp">
+        <insert tableName="booking">
+            <column name="event_id" valueNumeric="1"/>
+            <column name="customer_id" valueNumeric="1"/>
+            <column name="booking_time" valueDate="2025-08-18T09:00:00"/>
+        </insert>
+        <insert tableName="booking">
+            <column name="event_id" valueNumeric="2"/>
+            <column name="customer_id" valueNumeric="2"/>
+            <column name="booking_time" valueDate="2025-08-18T10:00:00"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>
