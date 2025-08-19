@@ -59,15 +59,14 @@ public class BookingService {
             customer = foundCustomer.get();
         }
         Event event = booking.getEvent();
-        Example<Event> eventExample = Example.of(event, ExampleMatcher.matching().withIgnorePaths("id"));
-        Optional<Event> foundEvent = eventRepository.findOne(eventExample);
+        Optional<Event> foundEvent = eventRepository.findById(event.getId());
         // If the event does not exist, throw error
         if (foundEvent.isEmpty()) {
             throw new IllegalArgumentException("Event does not exist");
         }
         // When Customer is found or saved, we check is there if existing booking for this customer
 
-        ExampleMatcher bookingMatcher = ExampleMatcher.matching().withIgnorePaths("id").withIgnorePaths("customerId");
+        ExampleMatcher bookingMatcher = ExampleMatcher.matching().withIgnorePaths("id").withIgnorePaths("bookingTime");
 
         Booking newBooking = new Booking();
         newBooking.setId(null); // Ensure the ID is null to create a new booking
