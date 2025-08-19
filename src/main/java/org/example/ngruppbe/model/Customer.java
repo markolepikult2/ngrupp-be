@@ -1,7 +1,6 @@
 package org.example.ngruppbe.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
@@ -19,6 +18,5 @@ public class Customer {
     private String lastName;
 
     @NotEmpty
-    @Email
-    private String email;
+    private String personalCode;
 }

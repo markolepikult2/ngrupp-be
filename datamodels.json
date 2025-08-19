@@ -16,7 +16,7 @@
         {"name": "id", "type": "Long", "primaryKey": true},
         {"name": "firstName", "type": "String"},
         {"name": "lastName", "type": "String"},
-        {"name": "email", "type": "String"}
+        {"name": "personalCode", "type": "String"}
       ],
       "angularDescription": "Represents a customer profile in the Angular app. Used for user registration, authentication, and displaying customer information in components like CustomerProfileComponent."
     },
