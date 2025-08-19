@@ -1,7 +1,6 @@
 package org.example.ngruppbe.controller;
 
 import org.example.ngruppbe.dto.BookingDTO;
-import org.example.ngruppbe.model.Booking;
 import org.example.ngruppbe.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +30,7 @@ public class BookingController {
     }
 
     @PostMapping
-    public ResponseEntity<Booking> addBooking(@Valid @RequestBody Booking booking) {
-        Booking savedBooking = bookingService.addBooking(booking);
-        return ResponseEntity.ok(savedBooking);
+    public ResponseEntity<BookingDTO> addBooking(@Valid @RequestBody BookingDTO booking) {
+        return ResponseEntity.ok(bookingService.addBooking(booking));
     }
 }
