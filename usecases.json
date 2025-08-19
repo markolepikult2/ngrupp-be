@@ -44,7 +44,7 @@
       "apiEndpoint": {
         "method": "GET",
         "path": "/api/booking/{eventId}",
-        "responseModel": "Booking[]",
+        "responseModel": "BookingDTO[]",
         "pathParameters": {
           "eventId": "The ID of the event for which bookings are to be listed."
         }
@@ -58,14 +58,14 @@
     {
       "useCaseId": "UC-ADD-BOOKING-TO-EVENT",
       "name": "Add Booking to Event",
-      "description": "A user can register a visitor for a specific event by adding a booking.",
+      "description": "A user can register a visitor for a specific event by adding a booking. Each booking contains Event and Customer.",
       "actors": ["ADMIN", "CUSTOMER","GUEST"],
       "permissionsRequired": ["booking:create"],
       "apiEndpoint": {
         "method": "POST",
         "path": "/api/booking",
-        "requestModel": "Booking",
-        "responseModel": "Booking"
+        "requestModel": "BookingDTO",
+        "responseModel": "BookingDTO"
       },
       "uiComponent": {
         "componentName": "BookingFormComponent",
