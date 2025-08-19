@@ -10,9 +10,12 @@ public class BookingDTO {
     private Event event;
     private List<Customer> customers;
 
+    public BookingDTO() {
+        // Default constructor for frameworks
+    }
+
     public BookingDTO(Event event, List<Customer> customers) {
         this.event = event;
         this.customers = customers;
     }
 }
-
