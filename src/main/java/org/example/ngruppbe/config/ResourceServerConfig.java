@@ -20,7 +20,7 @@ public class ResourceServerConfig {
                 .anyRequest().permitAll()
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}))
-            .csrf(csrf -> csrf.ignoringRequestMatchers("/api/events/**" , "/h2-console/**")) // CSRF protection disabled for /api/events and H2 Console
+            .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**" , "/h2-console/**")) // CSRF protection disabled for /api/events and H2 Console
             .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 ; // H2 Console frame options disabled
         return http.build();
