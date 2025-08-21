@@ -7,11 +7,11 @@ Because of limited time and learning curve roadmap is as follows:
 1. Implement basic functionality for events
 2. Implment basic functionality for bookings
 3. Deploy to Azure
-5. Implement security and roles
-6. Error handling concepts
-7. Logging concepts
+4. Implement security and roles
+5. Error handling concepts
+6. Logging concepts
 
-Currently steps 1,2,3 are implemented.
+Currently steps 1,2,3,4 are implemented.
 
 ## Features
 - Event management: list all events, add new events
@@ -64,7 +64,9 @@ Currently steps 1,2,3 are implemented.
 ## Deployment
 Deployment is executed by GitHub Actions and configured for Azure.
 
-## Troubleshooting
+## Manage users
+System has only one user with admin role.
+User credentials are in application.properties file.
 
 
 
