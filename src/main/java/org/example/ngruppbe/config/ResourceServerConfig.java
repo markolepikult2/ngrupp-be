@@ -1,6 +1,7 @@
 package org.example.ngruppbe.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
@@ -11,31 +12,34 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @EnableWebSecurity
 public class ResourceServerConfig {
+
     @Bean
+    @Order(2)
     public SecurityFilterChain resourceServerSecurityFilterChain(HttpSecurity http) throws Exception {
         http
+            .securityMatcher("/api/**") // Only match API endpoints
             .authorizeHttpRequests(authz -> authz
-                //.requestMatchers("/api/events").hasAuthority("SCOPE_event:read")
-                //.anyRequest().authenticated()
-                .anyRequest().permitAll()
+                .anyRequest().permitAll() //authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}))
-            .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**" , "/h2-console/**")) // CSRF protection disabled for /api/events and H2 Console
-            .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
-                ; // H2 Console frame options disabled
+            .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**", "/h2-console/**", "/login", "/login/**"))
+            .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
         return http.build();
     }
 
     @Bean
     public UrlBasedCorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOriginPattern("*");
+        configuration.addAllowedOriginPattern("*"); // Explicitly allow frontend
         configuration.addAllowedMethod(CorsConfiguration.ALL);
         configuration.addAllowedHeader(CorsConfiguration.ALL);
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/", configuration);
+        source.registerCorsConfiguration("/**", configuration); // Applies to all endpoints
+        source.registerCorsConfiguration("/login", configuration); // Explicitly for /login
+        source.registerCorsConfiguration("/login/**", configuration); // Explicitly for /login/**
         return source;
     }
 
