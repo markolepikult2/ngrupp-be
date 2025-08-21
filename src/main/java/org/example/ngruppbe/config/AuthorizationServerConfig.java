@@ -1,5 +1,6 @@
 package org.example.ngruppbe.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -18,6 +19,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 
 @Configuration
 public class AuthorizationServerConfig {
+
+    @Value("${admin.username}")
+    private String adminUsername;
+    @Value("${admin.password}")
+    private String adminPassword;
 
     @Bean
     @Order(1)
@@ -52,13 +58,9 @@ public class AuthorizationServerConfig {
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         // In-memory user for demonstration. Replace with JPA-based for production.
         return new InMemoryUserDetailsManager(
-            User.withUsername("admin")
-                .password(passwordEncoder.encode("adminpass"))
+            User.withUsername(adminUsername)
+                .password(passwordEncoder.encode(adminPassword))
                 .roles("ADMIN")
-                .build(),
-            User.withUsername("user")
-                .password(passwordEncoder.encode("userpass"))
-                .roles("USER")
                 .build()
         );
     }
